@@ -42,13 +42,7 @@ class Solution {
     }
     public int[] sortArray(int[] nums) {
         mergeSort(nums,0,nums.length-1);
-
-        int[] ans=new int[nums.length];
-        for(int i=0;i<ans.length;i++){
-            ans[i]=nums[i];
-        }
-
-        return ans;
+        return nums;
         
     }
 }
