@@ -8,7 +8,7 @@ class Solution {
 
         for(int i=0;i<prices.length;i++){
             buyPrice=Math.min(buyPrice,prices[i]);
-            sellPrice=Math.max(buyPrice,prices[i]);
+            sellPrice=prices[i];
 
             profit=sellPrice-buyPrice;
             maxProfit=Math.max(maxProfit,profit);
