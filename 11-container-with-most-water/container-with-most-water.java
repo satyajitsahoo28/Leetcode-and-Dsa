@@ -10,7 +10,7 @@ class Solution {
              int water=h*w;
              maxWater=Math.max(maxWater,water);
 
-            if(height[si]<=height[ei]){
+            if(height[si]<height[ei]){
                 si++;
             }
             else{
