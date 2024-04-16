@@ -1,5 +1,7 @@
 class Solution {
     public int calPoints(String[] operations) {
+
+        //using ArrayList TC->O(N) ,here k is the total number opeartion and SC->O(K) 
         // List<Integer> list=new ArrayList<>();
         // int idx=0;
         // for(int i=0;i<operations.length;i++){
@@ -31,7 +33,8 @@ class Solution {
         // }
 
         // return ans;
-        
+
+        //using Stack 
         Stack<Integer> s=new Stack<>();
         int ans=0;
         for(int i=0;i<operations.length;i++){
