@@ -15,45 +15,83 @@
  *     public List<NestedInteger> getList();
  * }
  */
+ //aprroach 1 using stack
+// public class NestedIterator implements Iterator<Integer> {
+//     Stack<NestedInteger> st;
+
+//     public NestedIterator(List<NestedInteger> nestedList) {
+//         int n=nestedList.size();
+//         st=new Stack<>();
+//         for(int i=n-1;i>=0;i--){
+//             st.push(nestedList.get(i));
+//         }
+        
+//     }
+
+//     @Override
+//     public Integer next() {
+//         int num=st.peek().getInteger();
+//         st.pop();
+//         return num;
+        
+//     }
+
+//     @Override
+//     public boolean hasNext() {
+//         if(st.isEmpty()){
+//             return false;
+//         }
+
+//         while(!st.isEmpty()){
+//             NestedInteger obj=st.peek();
+
+//             if(obj.isInteger()){
+//                 return true;
+//             }
+//             st.pop();
+//             List<NestedInteger> list=obj.getList();
+//             for(int i=list.size()-1;i>=0;i--){
+//                 st.push(list.get(i));
+//             }
+//         }
+//         return false;
+        
+//     }
+// }
+
+//aproach 2 using queue
 public class NestedIterator implements Iterator<Integer> {
-    Stack<NestedInteger> st;
+    Queue<Integer> q;
+    
 
     public NestedIterator(List<NestedInteger> nestedList) {
+        q=new LinkedList<>();
+        flatten(nestedList);        
+    }
+    void flatten(List<NestedInteger> nestedList){
         int n=nestedList.size();
-        st=new Stack<>();
-        for(int i=n-1;i>=0;i--){
-            st.push(nestedList.get(i));
+        for(int i=0;i<n;i++){
+            NestedInteger obj=nestedList.get(i);
+            if(obj.isInteger()){
+                q.offer(obj.getInteger());
+            }
+            else{
+                flatten(obj.getList());
+            }
         }
-        
     }
 
     @Override
     public Integer next() {
-        int num=st.peek().getInteger();
-        st.pop();
-        return num;
+       int num=q.peek();
+       q.poll();
+       return num;
         
     }
 
     @Override
     public boolean hasNext() {
-        if(st.isEmpty()){
-            return false;
-        }
-
-        while(!st.isEmpty()){
-            NestedInteger obj=st.peek();
-
-            if(obj.isInteger()){
-                return true;
-            }
-            st.pop();
-            List<NestedInteger> list=obj.getList();
-            for(int i=list.size()-1;i>=0;i--){
-                st.push(list.get(i));
-            }
-        }
-        return false;
+        return !q.isEmpty();
         
     }
 }
