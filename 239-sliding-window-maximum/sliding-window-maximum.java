@@ -37,6 +37,40 @@ class Solution {
         int ans[]=new int[n-k+1];
         int idx=0;
 
+        // Deque<Integer> dq=new LinkedList<>();
+        // for(int i=0;i<n;i++){
+        //     if(!dq.isEmpty() && dq.peek()<=i-k){
+        //         dq.poll();
+        //     }
+
+        //     while(!dq.isEmpty() && nums[dq.peekLast()]<nums[i]){
+        //         dq.pollLast();
+        //     }
+
+        //     dq.offer(i);
+        //     if(i>=k-1){
+        //         ans[idx++]=nums[dq.peek()];
+        //     }
+        // }
+        // return ans;
+        // int left=0;
+        // int right=0;
+        // int m=Integer.MIN_VALUE;
+        // while(right<n){
+        //     m=Integer.MIN_VALUE;
+        //     if(right>=k-1){
+        //         for(int i=left;i<=right;i++){
+        //             m=Math.max(m,nums[i]);
+        //         }
+        //         ans[idx++]=m;
+        //         left++;
+        //         right++;
+        //     }
+        //     else{
+        //         right++;
+        //     }
+        // }
+        // return ans;
         Deque<Integer> dq=new LinkedList<>();
         for(int i=0;i<n;i++){
             if(!dq.isEmpty() && dq.peek()<=i-k){
