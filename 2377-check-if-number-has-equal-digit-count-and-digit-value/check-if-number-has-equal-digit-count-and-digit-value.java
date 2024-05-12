@@ -19,12 +19,6 @@ class Solution {
         }
 
         for(int i=0;i<n;i++){
-            if(!map.containsKey(i)){
-                map.put(i,0);
-            }
-        }
-
-        for(int i=0;i<n;i++){
             if (map.getOrDefault(i, 0) != ans[i]) {
                 return false;
             }
