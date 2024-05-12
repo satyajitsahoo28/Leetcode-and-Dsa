@@ -18,11 +18,11 @@ class Solution {
             map.put(ans[i],map.getOrDefault(ans[i],0)+1);
         }
 
-        // for(int i=0;i<n;i++){
-        //     if(!map.containsKey(i)){
-        //         map.put(i,0);
-        //     }
-        // }
+        for(int i=0;i<n;i++){
+            if(!map.containsKey(i)){
+                map.put(i,0);
+            }
+        }
 
         for(int i=0;i<n;i++){
             if (map.getOrDefault(i, 0) != ans[i]) {
