@@ -1,18 +1,17 @@
 class Solution {
-    boolean dfs(List<List<Integer>> adj,int[] vis,int[] path,int node,int source,int destination){
-        vis[node]=1;
-        path[node]=1;
-        for(int it:adj.get(node)){
-            if(it!=destination && vis[it]==0){
-                if(dfs(adj,vis,path,it,source,destination)){
+    boolean dfs(List<List<Integer>> adj,boolean[] vis,int source,int destination){
+        vis[source]=true;
+        for(int it:adj.get(source)){
+            if(it==destination){
+                return true;
+            }
+            if(!vis[it]){
+                if(dfs(adj,vis,it,destination)){
                     return true;
                 }
             }
-            else if(it==destination && path[source]==1){
-                return true;
-            }
+            
         }
-        path[node]=0;
         return false;
     }
     public boolean validPath(int n, int[][] edges, int source, int destination) {
@@ -33,15 +32,9 @@ class Solution {
             adj.get(s).add(d);
             adj.get(d).add(s);
         }
-        int[] vis=new int[maxVertex+1];
-        int[] path=new int[maxVertex+1];
-
-        for(int i=source;i<=maxVertex;i++){
-            if(vis[i]==0){
-                if(dfs(adj,vis,path,i,source,destination)){
-                    return true;
-                }
-            }
+        boolean[] vis=new boolean[maxVertex+1];
+        if(dfs(adj,vis,source,destination)){
+            return true;
         }
     return false;
         
