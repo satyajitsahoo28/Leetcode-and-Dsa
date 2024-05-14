@@ -1,13 +1,19 @@
 class Solution {
-  public int findCenter(int[][] edges) {
-    Map<Integer, Integer> map = new HashMap<>();
-        for (int[] edge : edges) {
-            map.put(edge[0], map.getOrDefault(edge[0], 0) + 1);
-            map.put(edge[1], map.getOrDefault(edge[1], 0) + 1);
+    public int findCenter(int[][] edges) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<edges.length;i++){
+            int u=edges[i][0];
+            int v=edges[i][1];
+            map.put(u,map.getOrDefault(u,0)+1);
+            map.put(v,map.getOrDefault(v,0)+1);
         }
-        for (Integer key : map.keySet()) {
-            if (map.get(key) == edges.length) return key;
+
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+            if(entry.getValue()==edges.length){
+                return entry.getKey();
+            }
         }
-        return 0;
-  }
+        return -1;
+        
+    }
 }
