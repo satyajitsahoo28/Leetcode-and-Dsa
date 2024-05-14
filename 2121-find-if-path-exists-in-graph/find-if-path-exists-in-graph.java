@@ -5,7 +5,7 @@ class Solution {
             if(it==destination){
                 return true;
             }
-            if(!vis[it]){
+            else if(!vis[it]){
                 if(dfs(adj,vis,it,destination)){
                     return true;
                 }
@@ -19,24 +19,19 @@ class Solution {
             return true;
         }
         List<List<Integer>> adj=new ArrayList<>();
-        int maxVertex = 0; 
-        for (int[] edge : edges) {
-            maxVertex = Math.max(maxVertex, Math.max(edge[0], edge[1])); 
-        }
-        for (int i = 0; i <= maxVertex; i++) {
-            adj.add(new ArrayList<>());
-        }
-        for (int[] edge : edges) {
-            int s = edge[0];
-            int d = edge[1];
-            adj.get(s).add(d);
-            adj.get(d).add(s);
-        }
-        boolean[] vis=new boolean[maxVertex+1];
-        if(dfs(adj,vis,source,destination)){
-            return true;
-        }
-    return false;
+        for (int i = 0; i < n; i++) {
+      adj.add(new ArrayList<>());
+    }
+
+    for (int[] edge : edges) {
+      int s = edge[0];
+      int d = edge[1];
+      adj.get(s).add(d);
+      adj.get(d).add(s); 
+    }
+
+    boolean[] vis = new boolean[n];
+    return dfs(adj, vis, source, destination);
         
     }
 }
