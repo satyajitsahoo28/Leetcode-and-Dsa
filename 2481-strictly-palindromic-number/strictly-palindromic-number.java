@@ -10,7 +10,8 @@ class Solution {
         } 
         return binaryNum; 
     } 
-    boolean checkPalindrome(String s){
+    boolean checkPalindrome(int n,int i){
+        String s=decimalToBase(n,i);
         int si=0;
         int ei=s.length()-1;
         while(si<=ei){
@@ -24,8 +25,7 @@ class Solution {
     }
     public boolean isStrictlyPalindromic(int n) {
         for(int i=2;i<=n-2;i++){
-            String s=decimalToBase(n,i);
-            if(!checkPalindrome(s)){
+            if(!checkPalindrome(n,i)){
                 return false;
             }
         }
