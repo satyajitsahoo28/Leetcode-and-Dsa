@@ -18,7 +18,7 @@ class Solution {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null)
             return result;
-        Queue<TreeNode> q = new LinkedList<>();
+        Deque<TreeNode> q = new ArrayDeque<>();
         q.add(root);
         boolean flag = false;
         while (!q.isEmpty()) {
@@ -27,24 +27,25 @@ class Solution {
 
             for (int i = 0; i < levelSize; i++) {
                 if (!flag) {
-                    TreeNode curr = q.remove();
+                    TreeNode curr = q.removeFirst();
                     temp.add(curr.val);
-
+                    
                     if (curr.left != null) {
-                        q.add(curr.left);
+                        q.addLast(curr.left);
                     }
                     if (curr.right != null) {
-                        q.add(curr.right);
+                        q.addLast(curr.right);
                     }
+                    
                 } else {
-                    TreeNode curr = q.remove();
-                    temp.add(0, curr.val);
-
-                    if (curr.left != null) {
-                        q.add(curr.left);
-                    }
+                    TreeNode curr = q.removeLast();
+                    temp.add(curr.val);
+ 
                     if (curr.right != null) {
-                        q.add(curr.right);
+                        q.addFirst(curr.right);
+                    }
+                    if (curr.left != null) {
+                        q.addFirst(curr.left);
                     }
                 }
             }
