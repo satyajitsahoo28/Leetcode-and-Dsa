@@ -6,14 +6,12 @@ class Solution {
         while(j<n){
             prod*=nums[j];
 
-            while(i<j && prod>=k){
+            while(i<=j && prod>=k){
                 prod/=nums[i];
                 i++;
             }
 
-            if(prod<k){
-                cnt+=(j-i+1);
-            }
+            cnt+=(j-i+1);
             j++;
         }
         return cnt;
